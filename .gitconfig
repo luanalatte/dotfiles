@@ -6,6 +6,7 @@
 	no-skip-worktree = update-index --no-skip-worktree
 [core]
 	autocrlf = input
+	editor = nvim
 [commit]
 	gpgsign = true
 [user]
