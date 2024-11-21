@@ -1,0 +1,14 @@
+[init]
+	defaultBranch = main
+[alias]
+	s = status
+	skip-worktree = update-index --skip-worktree
+	no-skip-worktree = update-index --no-skip-worktree
+[core]
+	autocrlf = input
+[commit]
+	gpgsign = true
+[user]
+	signingkey = /home/luana/.ssh/git.pub
+[gpg]
+	format = ssh
