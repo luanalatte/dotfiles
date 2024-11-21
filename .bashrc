@@ -5,9 +5,17 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-[[ -f '/usr/share/git/git-prompt.sh' ]] && source /usr/share/git/git-prompt.sh
+if [[ -f '/usr/share/git/git-prompt.sh' ]]; then
+	source /usr/share/git/git-prompt.sh
 
-PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
+	if [[ "$(pwd)" == "$HOME" ]]; then
+		PS1='[\u@\h \W$(cd .dotfiles && __git_ps1 " (%s)" | sed 's/BARE://')]\$ '
+	else
+		PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
+	fi
+else
+	PS1='[\u@\h \W]\$ '
+fi
 
 EDITOR=nvim
 HISTCONTROL=ignorespace:erasedups
