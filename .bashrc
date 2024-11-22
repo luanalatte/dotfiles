@@ -15,12 +15,14 @@ fi
 EDITOR=nvim
 HISTCONTROL=ignorespace:erasedups
 
-complete -cf sudo
-complete -F _command sudo
+if command -v complete >/dev/null 2>&1; then 
+	complete -cf sudo
+	complete -F _command sudo
+fi
 
 [[ -f '/usr/share/bash-complete-alias/complete_alias' ]] && source /usr/share/bash-complete-alias/complete_alias
 
-source ~/.bash_aliases
+[[ -f ~/.bash_aliases ]] && source ~/.bash_aliases
 
 [[ -f '/usr/share/bash-complete-alias/complete_alias' ]] && complete -F _complete_alias "${!BASH_ALIASES[@]}"
 
