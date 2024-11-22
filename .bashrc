@@ -7,12 +7,7 @@
 
 if [[ -f '/usr/share/git/git-prompt.sh' ]]; then
 	source /usr/share/git/git-prompt.sh
-
-	if [[ "$(pwd)" == "$HOME" ]]; then
-		PS1='[\u@\h \W$(cd .dotfiles && __git_ps1 " (%s)" | sed 's/BARE://')]\$ '
-	else
-		PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
-	fi
+	PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
 else
 	PS1='[\u@\h \W]\$ '
 fi
