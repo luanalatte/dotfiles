@@ -25,3 +25,5 @@ source ~/.bash_aliases
 [[ -f '/usr/share/bash-complete-alias/complete_alias' ]] && complete -F _complete_alias "${!BASH_ALIASES[@]}"
 
 eval "$(ssh-agent -s)" > /dev/null
+
+command -v direnv >/dev/null 2>&1 && eval "$(direnv hook bash)"
