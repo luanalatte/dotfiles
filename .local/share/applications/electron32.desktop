@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.1
+Type=Application
+Name=Electron 32
+NoDisplay=true
+Icon=electron32
+Exec=electron32 %u
+Actions=
+Categories=Development;GTK;
+StartupNotify=true

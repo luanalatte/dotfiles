@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.1
+Type=Application
+Name=Steam Linux Runtime 3.0 (sniper)
+NoDisplay=true
+Comment=Play this game on Steam
+Icon=steam
+Exec=steam steam://rungameid/1628350
+Actions=
+Categories=Game;
