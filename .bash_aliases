@@ -22,6 +22,7 @@ alias vim='nvim'
 
 alias dotfiles="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
 
+# Creates a .envrc to run nix-direnv
 setup-nix-direnv() {
     [[ ! -f '.envrc' ]] && echo -e "source \$HOME/.nix-profile/share/nix-direnv/direnvrc\n\nuse nix" > .envrc || echo ".envrc already exists."
 }
@@ -30,6 +31,11 @@ setup-nix-direnv() {
 vscode-customize() {
     sudo chown -R $(whoami) "$(which code)"
     sudo chown -R $(whoami) /opt/visual-studio-code
+}
+
+# Sorts GNOME desktop entries alphabetically
+gnome-sort() {
+    gsettings set org.gnome.shell app-picker-layout "[]" && echo 'Sorted. Restart GNOME session for changes to take effect.'
 }
 
 # Shorthands`
