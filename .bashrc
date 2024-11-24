@@ -20,6 +20,14 @@ if command -v complete >/dev/null 2>&1; then
 	complete -F _command sudo
 fi
 
+# pnpm
+export PNPM_HOME="$HOME/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
 [[ -f '/usr/share/bash-complete-alias/complete_alias' ]] && source /usr/share/bash-complete-alias/complete_alias
 
 [[ -f ~/.bash_aliases ]] && source ~/.bash_aliases
