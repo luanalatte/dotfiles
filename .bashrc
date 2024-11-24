@@ -27,6 +27,9 @@ esac
 
 [[ -f ~/.bash_aliases ]] && source ~/.bash_aliases
 
+# .bash_aliases2 intended to be used as a private aliases file
+[[ -f ~/.bash_aliases2 ]] && source ~/.bash_aliases2
+
 # bash-completion
 if command -v complete >/dev/null 2>&1; then 
 	complete -cf sudo
