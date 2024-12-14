@@ -43,4 +43,7 @@ fi
 
 eval "$(ssh-agent -s)" > /dev/null
 
+eval "$(starship init bash)"
+
 command -v direnv >/dev/null 2>&1 && eval "$(direnv hook bash)"
+
