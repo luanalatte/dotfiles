@@ -42,4 +42,5 @@ gnome-sort() {
 alias ':q'='exit'
 alias '..'='cd ..'
 alias g='git'
+alias t='task'
 alias artisan='php artisan'
