@@ -5,8 +5,8 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-EDITOR=nvim
-HISTCONTROL=ignorespace:erasedups
+export EDITOR=nvim
+export HISTCONTROL=ignorespace:erasedups
 
 # prompt
 if [[ -f '/usr/share/git/git-prompt.sh' ]]; then
