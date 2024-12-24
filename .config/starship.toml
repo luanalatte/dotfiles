@@ -204,7 +204,7 @@ format = '\[[$symbol($version)]($style)\]'
 format = '\[[$symbol($version)]($style)\]'
 
 [custom.task]
-command = 'echo "$(task _get rc.context) [$(task rc.verbose=nothing rc._forcecolor=off rc.echo.blank=no count)]"'
+command = 'echo "$(task _get rc.context) [$(task rc.verbose=nothing rc._forcecolor=off rc.echo.blank=no status:pending count)]"'
 symbol = ' '
 format = '[$symbol($output)]($style) '
 when = 'test -n "$(task _get rc.context)"'
