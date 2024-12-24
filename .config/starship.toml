@@ -1,5 +1,7 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
+format = '$all'
+
 [aws]
 format = '\[[$symbol($profile)(\($region\))(\[$duration\])]($style)\]'
 
@@ -136,6 +138,7 @@ format = '\[[$symbol$version]($style)\]'
 format = '\[[$symbol($version)]($style)\]'
 
 [php]
+symbol = ' '
 format = '\[[$symbol($version)]($style)\]'
 version_format = '${major}.${minor}'
 
@@ -199,3 +202,9 @@ format = '\[[$symbol($version)]($style)\]'
 
 [solidity]
 format = '\[[$symbol($version)]($style)\]'
+
+[custom.task]
+command = 'task _get rc.context'
+symbol = ' '
+format = '\[[$symbol($output)]($style)\] '
+when = 'test -n "$(task _get rc.context)"'
