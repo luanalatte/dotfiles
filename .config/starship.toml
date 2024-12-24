@@ -1,6 +1,6 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
-format = '$all'
+format = '$directory$custom$all'
 
 [aws]
 format = '\[[$symbol($profile)(\($region\))(\[$duration\])]($style)\]'
@@ -206,5 +206,5 @@ format = '\[[$symbol($version)]($style)\]'
 [custom.task]
 command = 'task _get rc.context'
 symbol = ' '
-format = '\[[$symbol($output)]($style)\] '
+format = '[$symbol($output)]($style) '
 when = 'test -n "$(task _get rc.context)"'
