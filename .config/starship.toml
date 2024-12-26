@@ -3,7 +3,9 @@
 format = '$directory$custom$all'
 
 [aws]
-format = '\[[$symbol($profile)(\($region\))(\[$duration\])]($style)\]'
+symbol = '  '
+format = '\[[$symbol($profile)($region)(\[$duration\])]($style)\]'
+disabled = true
 
 [bun]
 format = '\[[$symbol($version)]($style)\]'
