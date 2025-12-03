@@ -1,6 +1,7 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 format = '$directory$custom$all'
+add_newline = false
 
 [aws]
 symbol = '  '
