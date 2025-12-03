@@ -41,7 +41,9 @@ if command -v complete >/dev/null 2>&1; then
 fi
 # bash-completion end
 
-eval "$(starship init bash)"
+if [[ "$TERM" != "linux" ]]; then
+	eval "$(starship init bash)"
+fi
 
 command -v direnv >/dev/null 2>&1 && eval "$(direnv hook bash)"
 
