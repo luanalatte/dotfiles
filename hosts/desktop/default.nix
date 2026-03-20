@@ -18,6 +18,7 @@
   ];
 
   latte.profiles.graphical.enable = true;
+  latte.hardware.gpu = "nvidia"; # TODO: force version 580, as this host's gpu is deprecated in 590 onwards.
 
   swapDevices = [
     {
@@ -30,21 +31,6 @@
 
   # Configure network connections interactively with nmcli or nmtui.
   networking.networkmanager.enable = true;
-
-  # nvidia 580
-  boot.initrd.kernelModules = [ "nvidia" ];
-  boot.extraModulePackages = [ config.boot.kernelPackages.nvidia_x11 ];
-
-  hardware.graphics.enable = true;
-  hardware.nvidia = {
-    package = config.boot.kernelPackages.nvidiaPackages.production;
-    open = false;
-    modesetting.enable = true;
-    powerManagement.enable = true;
-    nvidiaSettings = true;
-  };
-
-  services.xserver.videoDrivers = [ "nvidia" ];
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
