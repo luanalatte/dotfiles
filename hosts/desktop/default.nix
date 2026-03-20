@@ -17,11 +17,6 @@
     inputs.home-manager.nixosModules.default
   ];
 
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.systemd-boot.configurationLimit = 10;
-
   swapDevices = [
     {
       device = "/var/lib/swapfile";
