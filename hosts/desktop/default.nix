@@ -46,27 +46,9 @@
 
   services.xserver.videoDrivers = [ "nvidia" ];
 
-  # Set your time zone.
-  time.timeZone = "America/Argentina/Buenos_Aires";
-
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "en_US.UTF-8";
-    LC_IDENTIFICATION = "en_US.UTF-8";
-    LC_MEASUREMENT = "es_AR.UTF-8";
-    LC_MONETARY = "en_US.UTF-8";
-    LC_NAME = "en_US.UTF-8";
-    LC_NUMERIC = "en_US.UTF-8";
-    LC_PAPER = "es_AR.UTF-8";
-    LC_TELEPHONE = "es_AR.UTF-8";
-    LC_TIME = "es_AR.UTF-8";
-  };
 
   # console = {
   #   font = "Lat2-Terminus16";

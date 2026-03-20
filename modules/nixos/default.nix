@@ -4,6 +4,7 @@
   imports = [
     ../base
     ../options
+    ./locale.nix
   ];
 
   # https://nixos.org/manual/nixos/unstable/release-notes.html
