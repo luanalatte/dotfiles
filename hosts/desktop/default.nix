@@ -17,6 +17,8 @@
     inputs.home-manager.nixosModules.default
   ];
 
+  latte.profiles.graphical.enable = true;
+
   swapDevices = [
     {
       device = "/var/lib/swapfile";
