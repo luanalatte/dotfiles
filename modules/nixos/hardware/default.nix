@@ -5,7 +5,8 @@ let
 in
 {
   imports = [
-    ./nvidia.nix
+    ./audio.nix
+    ./gpu/nvidia.nix
   ];
 
   options.latte.hardware.gpu = mkOption {
