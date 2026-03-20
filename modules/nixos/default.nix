@@ -4,6 +4,7 @@
   imports = [
     ../base
     ../options
+    ./boot
     ./hardware
     ./locale.nix
   ];
