@@ -6,7 +6,6 @@
   config,
   lib,
   pkgs,
-  inputs,
   ...
 }:
 
@@ -14,7 +13,6 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    inputs.home-manager.nixosModules.default
   ];
 
   latte.profiles.graphical.enable = true;
@@ -56,24 +54,6 @@
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.libinput.enable = true;
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.luana = {
-    isNormalUser = true;
-    description = "Luana";
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-    ];
-    shell = pkgs.zsh;
-  };
-
-  home-manager = {
-    useGlobalPkgs = true;
-    useUserPackages = true;
-    extraSpecialArgs = { inherit inputs; };
-    users.luana = ./home.nix;
-  };
 
   programs.zsh = {
     enable = true;

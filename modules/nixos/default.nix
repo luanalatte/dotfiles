@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, inputs, ... }:
 
 {
   imports = [
@@ -6,7 +6,9 @@
     ../options
     ./boot
     ./hardware
+    ./users
     ./locale.nix
+    inputs.home-manager.nixosModules.default
   ];
 
   # https://nixos.org/manual/nixos/unstable/release-notes.html
