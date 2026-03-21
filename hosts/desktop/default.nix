@@ -119,16 +119,12 @@
   #   init.defaultBranch = "main";
   # };
 
+  programs.gamemode.enable = true;
   programs.steam = {
     enable = true;
     protontricks.enable = true;
-    extraPackages = [
-      pkgs.gamescope
-    ];
-    extraCompatPackages = [
-      pkgs.proton-ge-bin
-    ];
-    # extest.enable = true;
+    extraCompatPackages = [ pkgs.proton-ge-bin ];
+    extest.enable = true;
     # remotePlay.openFirewall = true;
     # localNetworkGameTransfers.openFirewall = true;
   };
