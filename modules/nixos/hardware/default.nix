@@ -7,6 +7,7 @@ in
   imports = [
     ./audio.nix
     ./gpu/nvidia.nix
+    ./mouse.nix
   ];
 
   options.latte.hardware.gpu = mkOption {
