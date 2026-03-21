@@ -1,5 +1,5 @@
 {
   imports = [
-    ./plasma6
+    ./global.nix
   ];
 }

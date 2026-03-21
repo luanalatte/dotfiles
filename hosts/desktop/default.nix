@@ -90,11 +90,6 @@
     lla = "ls -lah";
   };
 
-  environment.sessionVariables = {
-    XCURSOR_THEME = "Breeze_Light";
-    XCURSOR_SIZE = 24;
-  };
-
   # programs.firefox.enable = true;
 
   # List packages installed in system profile.

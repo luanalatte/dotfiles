@@ -6,6 +6,7 @@
     ./desktop
     ./dev
     ./shell
+    ./themes
   ];
 
   home.packages = with pkgs; [
