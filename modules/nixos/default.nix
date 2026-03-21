@@ -5,6 +5,7 @@
     ../base
     ../options
     ./boot
+    ./desktop
     ./hardware
     ./users
     ./locale.nix

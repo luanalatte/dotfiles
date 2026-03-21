@@ -11,12 +11,15 @@
 
 {
   imports = [
-    # Include the results of the hardware scan.
     ./hardware-configuration.nix
   ];
 
-  latte.profiles.graphical.enable = true;
-  latte.hardware.gpu = "nvidia"; # TODO: force version 580, as this host's gpu is deprecated in 590 onwards.
+  latte = {
+    hardware.gpu = "nvidia"; # TODO: force version 580, as this host's gpu is deprecated in 590 onwards.
+
+    profiles.graphical.enable = true;
+    desktop.gnome.enable = true;
+  };
 
   swapDevices = [
     {
@@ -123,16 +126,6 @@
     # remotePlay.openFirewall = true;
     # localNetworkGameTransfers.openFirewall = true;
   };
-
-  # Desktop Environment
-  services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
-
-  environment.plasma6.excludePackages = with pkgs.kdePackages; [
-    elisa
-    kate
-    konsole
-  ];
 
   # List services that you want to enable:
 

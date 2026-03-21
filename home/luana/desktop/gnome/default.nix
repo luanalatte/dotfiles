@@ -1,0 +1,67 @@
+{
+  lib,
+  pkgs,
+  config,
+  osConfig,
+  ...
+}:
+
+let
+  uint32 = lib.hm.gvariant.mkUint32;
+in
+{
+  config = lib.mkIf osConfig.latte.desktop.gnome.enable {
+    programs.gnome-shell.enable = true;
+
+    dconf.settings = {
+      "org/gnome/shell" = {
+        enabled-extensions = with pkgs.gnomeExtensions; [
+          appindicator.extensionUuid
+        ];
+      };
+
+      "org/gnome/shell/favorite-apps" = {
+        favorite-apps = [
+          "org.gnome.Nautilus.desktop"
+          "zen.desktop"
+          "obsidian.desktop"
+          "code.desktop"
+        ];
+      };
+
+      "org/gnome/desktop/sound" = {
+        event-sounds = false;
+      };
+
+      "org/gnome/desktop/interface" = {
+        cursor-theme = config.home.pointerCursor.name;
+      };
+
+      "org/gnome/desktop/peripherals/keyboard" = {
+        delay = uint32 200;
+        repeat = uint32 20;
+      };
+
+      "org/gnome/desktop/peripherals/mouse" = {
+        speed = 0.5;
+        accel-profile = "flat";
+      };
+
+      "org/gnome/desktop/wm/keybindings" = {
+        close = [ "<Super>w" ];
+      };
+
+      "org/gnome/settings-daemon/plugins/media-keys" = {
+        custom-keybindings = [
+          "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
+        ];
+      };
+
+      "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
+        name = "Launch Terminal";
+        command = "alacritty";
+        binding = "<Super>Return";
+      };
+    };
+  };
+}
