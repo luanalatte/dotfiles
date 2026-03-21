@@ -102,7 +102,6 @@
   environment.systemPackages = with pkgs; [
     htop
     alacritty
-    tealdeer
     nixd
     azahar
   ];

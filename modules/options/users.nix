@@ -5,7 +5,9 @@ let
 in
 {
   options.latte.system = {
-    home-manager.enable = lib.mkEnableOption "Home Manager";
+    home-manager.enable = lib.mkEnableOption "Home Manager" // {
+      default = true;
+    };
 
     mainUser = lib.mkOption {
       type = enum config.latte.system.users;
@@ -22,6 +24,4 @@ in
       '';
     };
   };
-
-  config.latte.system.home-manager.enable = lib.mkDefault true;
 }
