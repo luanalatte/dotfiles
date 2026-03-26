@@ -2,12 +2,16 @@
 
 {
   imports = [
-    ./browser.nix
     ./desktop
     ./dev
     ./shell
     ./themes
   ];
+
+  latte.programs = {
+    browsers.zen-browser.enable = true;
+    defaultBrowser = "zen-browser";
+  };
 
   latte.packages = with pkgs; [
     vesktop
