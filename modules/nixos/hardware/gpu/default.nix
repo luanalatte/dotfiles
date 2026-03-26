@@ -4,6 +4,10 @@ let
   inherit (lib.types) enum nullOr;
 in
 {
+  imports = [
+    ./nvidia.nix
+  ];
+
   options.latte.hardware.gpu = lib.mkOption {
     type = nullOr (enum [
       # "intel"
@@ -11,6 +15,6 @@ in
       "nvidia"
     ]);
     default = null;
-    description = "The manufacturer of the primary system gpu";
+    description = "The manufacturer of the primary system GPU";
   };
 }

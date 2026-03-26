@@ -1,7 +1,7 @@
 {
   imports = [
     ./audio.nix
-    ./gpu/nvidia.nix
+    ./gpu
     ./mouse.nix
   ];
 }

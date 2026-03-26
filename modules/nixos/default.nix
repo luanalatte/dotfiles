@@ -6,7 +6,6 @@
   imports = [
     ../../home
     ../generic
-    ../options
     ./boot
     ./desktop
     ./hardware
