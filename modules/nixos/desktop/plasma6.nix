@@ -10,7 +10,7 @@
     services.displayManager.sddm.enable = lib.mkDefault true;
     services.desktopManager.plasma6.enable = true;
 
-    environment.systemPackages = with pkgs; [
+    latte.packages = with pkgs; [
       kdePackages.karousel
       kdePackages.partitionmanager
       plasma-panel-colorizer

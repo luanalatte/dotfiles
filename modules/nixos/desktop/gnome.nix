@@ -54,7 +54,7 @@
       yelp
     ];
 
-    environment.systemPackages = with pkgs; [
+    latte.packages = with pkgs; [
       # baobab
       evince # Waiting for papers to get evince's full-featured print dialog
       # gnome-calculator

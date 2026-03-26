@@ -9,7 +9,7 @@
     ./themes
   ];
 
-  home.packages = with pkgs; [
+  latte.packages = with pkgs; [
     vesktop
     bitwarden-desktop
     telegram-desktop

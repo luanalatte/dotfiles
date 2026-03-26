@@ -9,7 +9,7 @@
     ];
   };
 
-  home.packages = with pkgs; [
+  latte.packages = with pkgs; [
     nixfmt
   ];
 }
