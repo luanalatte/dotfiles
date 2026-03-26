@@ -1,6 +1,8 @@
 { lib, inputs, ... }:
 
 {
+  _class = "nixos";
+
   imports = [
     ../../home
     ../options
