@@ -16,6 +16,7 @@
 
   latte = {
     hardware.gpu = "nvidia"; # TODO: force version 580, as this host's gpu is deprecated in 590 onwards.
+    audio.disableAutoMute = true;
 
     profiles.graphical.enable = true;
     desktop.gnome.enable = true;
@@ -102,6 +103,7 @@
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
   latte.packages = with pkgs; [
+    alsa-utils
     htop
     alacritty
     nixd
