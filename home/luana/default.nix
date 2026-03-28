@@ -14,10 +14,20 @@
   };
 
   latte.packages = with pkgs; [
-    vesktop
     bitwarden-desktop
-    telegram-desktop
-    signal-desktop
     obsidian
+    (prismlauncher.override {
+      textToSpeechSupport = false;
+      jdks = [
+        jdk25
+        jdk21
+        jdk17
+        jdk8
+      ];
+    })
+    signal-desktop
+    spotify
+    telegram-desktop
+    vesktop
   ];
 }
