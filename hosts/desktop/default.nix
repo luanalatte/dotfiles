@@ -16,13 +16,21 @@
 
   latte = {
     hardware.gpu = "nvidia"; # TODO: force version 580, as this host's gpu is deprecated in 590 onwards.
-    audio.disableAutoMute = true;
+    hardware.audio = {
+      hdmi.enable = false;
+      disableAutoMute = true;
+    };
 
     profiles.graphical.enable = true;
     desktop.gnome.enable = true;
   };
 
   services.power-profiles-daemon.enable = false;
+
+  # This machine has issues with suspend due to nvidia.
+  systemd.targets.suspend.enable = false;
+  systemd.targets.hibernate.enable = false;
+  systemd.targets.hybrid-sleep.enable = false;
 
   swapDevices = [
     {

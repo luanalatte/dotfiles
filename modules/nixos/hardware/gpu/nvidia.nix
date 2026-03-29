@@ -1,34 +1,57 @@
-{ lib, config, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 
 let
+  cfg = config.latte.hardware;
+
   inherit (config.latte.hardware) gpu;
-  inherit (lib) mkIf mkDefault;
 in
 {
-  config = mkIf (gpu == "nvidia") {
+  config = lib.mkIf (gpu == "nvidia") {
     services.xserver.videoDrivers = [ "nvidia" ];
 
     boot = {
-      initrd.kernelModules = [ "nvidia" ];
-      extraModulePackages = [ config.boot.kernelPackages.nvidia_x11 ];
+      kernelModules = [ "nvidia" ];
+      extraModulePackages = [ config.hardware.nvidia.package ];
     };
 
-    # I don't need NVIDIA HDMI audio device
-    services.udev.extraRules = ''
-      ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x040300", ATTR{remove}="1"
-    '';
+    environment.sessionVariables = {
+      LIBVA_DRIVER_NAME = "nvidia";
 
-    # TODO: add libva for hardware acceleration
+      GBM_BACKEND = "nvidia-drm";
+      NVD_BACKEND = "direct";
+
+      # MOZ_DRM_DEVICE = "/dev/dri/card1";
+    };
+
+    environment.systemPackages = with pkgs; [
+      libva
+      # libva-utils
+      # nvtopPackages.nvidia
+      # vulkan-tools
+    ];
 
     hardware = {
-      graphics.enable = true;
+      graphics = {
+        extraPackages = with pkgs; [
+          nvidia-vaapi-driver
+        ];
+
+        extraPackages32 = with pkgs; [
+          pkgsi686Linux.nvidia-vaapi-driver
+        ];
+      };
 
       nvidia = {
-        package = mkDefault config.boot.kernelPackages.nvidiaPackages.production;
+        package = lib.mkDefault config.boot.kernelPackages.nvidiaPackages.production;
         open = false;
         modesetting.enable = true;
-        powerManagement.enable = true;
-        nvidiaSettings = true;
+        powerManagement.enable = config.systemd.targets.suspend.enable;
+        nvidiaSettings = false;
       };
     };
   };

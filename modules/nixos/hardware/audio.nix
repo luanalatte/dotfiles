@@ -6,10 +6,14 @@
 }:
 
 let
-  cfg = config.latte.audio;
+  cfg = config.latte.hardware.audio;
 in
 {
-  options.latte.audio = {
+  options.latte.hardware.audio = {
+    hdmi.enable = lib.mkEnableOption "HDMI audio drivers" // {
+      default = true;
+    };
+
     disableAutoMute = lib.mkEnableOption "Set ALSA Auto-Mute to Disabled";
   };
 
@@ -38,5 +42,9 @@ in
       pulse.enable = true;
       #jack.enable = true;
     };
+
+    services.udev.extraRules = lib.mkIf (cfg.hdmi.enable == false) ''
+      ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x040300", ATTR{remove}="1"
+    ''; # NVIDIA HDMI audio device
   };
 }
