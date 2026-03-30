@@ -13,6 +13,7 @@
     ./nix.nix
     ./revision.nix
     ./users
+    # inputs.nix-flatpak.nixosModules.nix-flatpak
     inputs.home-manager.nixosModules.default
   ];
 }
