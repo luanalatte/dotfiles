@@ -106,7 +106,7 @@
     lla = "ls -lah";
   };
 
-  # programs.firefox.enable = true;
+  programs.direnv.enable = true;
 
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
@@ -140,6 +140,8 @@
     # remotePlay.openFirewall = true;
     # localNetworkGameTransfers.openFirewall = true;
   };
+
+  programs.zoom-us.enable = true;
 
   # List services that you want to enable:
 

@@ -15,6 +15,7 @@
 
   latte.packages = with pkgs; [
     bitwarden-desktop
+    mpv
     obsidian
     (prismlauncher.override {
       textToSpeechSupport = false;
@@ -29,5 +30,6 @@
     spotify
     telegram-desktop
     vesktop
+    yt-dlp
   ];
 }
