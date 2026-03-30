@@ -17,6 +17,26 @@ in
       "org/gnome/shell" = {
         enabled-extensions = with pkgs.gnomeExtensions; [
           appindicator.extensionUuid
+          vitals.extensionUuid
+        ];
+      };
+
+      "org/gnome/shell/extensions/vitals" = {
+        show-temperature = true;
+        show-processor = true;
+        show-memory = true;
+        show-storage = true;
+        show-gpu = true;
+        show-fan = false;
+        show-network = false;
+        show-system = false;
+        show-voltage = false;
+        hot-sensors = [
+          "__temperature_avg__"
+          "_processor_usage_"
+          "_memory_usage_"
+          "_gpu#1_utilization_"
+          "_storage_free_"
         ];
       };
 
@@ -34,6 +54,7 @@ in
       };
 
       "org/gnome/desktop/interface" = {
+        enable-hot-corners = false;
         cursor-theme = config.home.pointerCursor.name;
       };
 
