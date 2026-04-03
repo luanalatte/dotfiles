@@ -116,6 +116,7 @@
     alacritty
     nixd
     azahar
+    python314
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -142,8 +143,6 @@
     # remotePlay.openFirewall = true;
     # localNetworkGameTransfers.openFirewall = true;
   };
-
-  programs.zoom-us.enable = true;
 
   # List services that you want to enable:
 
