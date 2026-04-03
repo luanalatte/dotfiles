@@ -126,6 +126,8 @@
   #   enableSSHSupport = true;
   # };
 
+  programs.droidcam.enable = true;
+
   programs.git.enable = true;
   # programs.git.config = {
   #   init.defaultBranch = "main";
