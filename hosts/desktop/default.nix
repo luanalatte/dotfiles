@@ -111,11 +111,13 @@
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
   latte.packages = with pkgs; [
-    alsa-utils
-    htop
     alacritty
-    nixd
+    alsa-utils
     azahar
+    epson-escpr
+    htop
+    libreoffice-still
+    nixd
     python314
   ];
 
