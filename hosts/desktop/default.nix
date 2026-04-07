@@ -21,6 +21,8 @@
       disableAutoMute = true;
     };
 
+    hardware.printers.epsonL3150.enable = true;
+
     profiles.graphical.enable = true;
     desktop.gnome.enable = true;
   };
@@ -62,9 +64,6 @@
     layout = "us";
     variant = "altgr-intl";
   };
-
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.libinput.enable = true;
@@ -114,7 +113,6 @@
     alacritty
     alsa-utils
     azahar
-    epson-escpr
     htop
     libreoffice-still
     nixd
