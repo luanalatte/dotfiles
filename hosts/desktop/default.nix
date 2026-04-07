@@ -159,6 +159,10 @@
     enable = true;
     user = "luana";
     dataDir = "/home/luana";
+    openDefaultPorts = true;
+    # settings.options = {
+    #   globalAnnounceEnabled = false;
+    # };
   };
 
   # Copy the NixOS configuration file and link it from the resulting system
