@@ -116,7 +116,6 @@
     htop
     libreoffice-still
     nixd
-    python314
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
