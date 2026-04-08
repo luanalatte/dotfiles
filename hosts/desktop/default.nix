@@ -27,6 +27,8 @@
     desktop.gnome.enable = true;
   };
 
+  hardware.opentabletdriver.enable = true;
+
   services.power-profiles-daemon.enable = false;
 
   # This machine has issues with suspend due to nvidia.
