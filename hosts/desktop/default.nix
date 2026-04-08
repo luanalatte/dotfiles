@@ -70,42 +70,10 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.libinput.enable = true;
 
-  programs.zsh = {
-    enable = true;
-    autosuggestions.enable = true;
-    histSize = 10000;
-    setOptions = [
-      "HIST_IGNORE_DUPS"
-      "SHARE_HISTORY"
-      "HIST_FCNTL_LOCK"
-      "AUTOCD"
-    ];
-  };
-
+  programs.zsh.enable = true;
   programs.starship.enable = true;
 
-  programs.neovim = {
-    enable = true;
-    defaultEditor = true;
-    vimAlias = true;
-    configure = {
-      customLuaRC = ''
-          vim.opt.tabstop = 4
-        	vim.opt.shiftwidth = 4
-        	vim.opt.expandtab = true
-        	vim.opt.softtabstop = 4
-      '';
-    };
-  };
-
-  environment.shellAliases = {
-    grep = "grep --color=auto";
-    diff = "diff --color=auto";
-    ls = "ls -lh --color=auto";
-    ll = "ls -lh";
-    la = "ls -lah";
-    lla = "ls -lah";
-  };
+  programs.neovim.enable = true;
 
   programs.direnv.enable = true;
 
@@ -131,19 +99,11 @@
   programs.droidcam.enable = true;
 
   programs.git.enable = true;
-  # programs.git.config = {
-  #   init.defaultBranch = "main";
-  # };
-
-  programs.gamemode.enable = true;
-  programs.steam = {
-    enable = true;
-    protontricks.enable = true;
-    extraCompatPackages = [ pkgs.proton-ge-bin ];
-    extest.enable = true;
-    # remotePlay.openFirewall = true;
-    # localNetworkGameTransfers.openFirewall = true;
+  programs.git.config = {
+    init.defaultBranch = "main";
   };
+
+  programs.steam.enable = true;
 
   # List services that you want to enable:
 

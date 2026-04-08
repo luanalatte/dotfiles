@@ -3,8 +3,10 @@
 {
   home.shellAliases = {
     ":q" = "exit";
+    flake = "nix flake";
   };
 
+  programs.zsh.enable = true;
   programs.starship.enable = true;
   programs.hyfetch.enable = true;
 
