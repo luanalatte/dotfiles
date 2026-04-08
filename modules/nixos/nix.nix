@@ -1,7 +1,9 @@
-{ lib, ... }:
+{ lib, pkgs, ... }:
 
 {
   nix = {
+    package = pkgs.lixPackageSets.stable.lix;
+
     channel.enable = false;
 
     # set the nix store to clean every Monday at 3am
