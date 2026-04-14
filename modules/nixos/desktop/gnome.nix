@@ -46,7 +46,7 @@
       gnome-music
       gnome-software
       gnome-weather
-      loupe
+      # loupe
       papers
       showtime
       simple-scan
