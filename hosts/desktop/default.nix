@@ -116,6 +116,13 @@
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
+  services.flatpak = {
+    enable = true;
+    packages = [
+      "com.usebottles.bottles"
+    ];
+  };
+
   services.syncthing = {
     enable = true;
     user = "luana";
