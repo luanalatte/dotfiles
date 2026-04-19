@@ -124,6 +124,8 @@
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
+  programs.appimage.enable = true;
+
   services.flatpak = {
     enable = true;
     packages = [
