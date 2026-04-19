@@ -70,6 +70,10 @@ in
 
       "org/gnome/desktop/wm/keybindings" = {
         close = [ "<Super>w" ];
+        switch-to-workspace-left = [ "<Super>comma" ];
+        switch-to-workspace-right = [ "<Super>period" ];
+        move-to-workspace-left = [ "<Shift><Super>comma" ];
+        move-to-workspace-right = [ "<Shift><Super>period" ];
       };
 
       "org/gnome/settings-daemon/plugins/media-keys" = {
