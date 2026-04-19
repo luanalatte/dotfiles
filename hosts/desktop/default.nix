@@ -28,6 +28,7 @@
   };
 
   hardware.opentabletdriver.enable = true;
+  hardware.opentabletdriver.daemon.enable = false; # I prefer to start it on-demand.
 
   services.power-profiles-daemon.enable = false;
 
