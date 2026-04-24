@@ -95,6 +95,8 @@
     htop
     libreoffice-still
     nixd
+    podman-compose
+    podman-desktop
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -142,6 +144,12 @@
     # settings.options = {
     #   globalAnnounceEnabled = false;
     # };
+  };
+
+  virtualisation.podman = {
+    enable = true;
+    dockerCompat = true;
+    dockerSocket.enable = true;
   };
 
   # Copy the NixOS configuration file and link it from the resulting system
