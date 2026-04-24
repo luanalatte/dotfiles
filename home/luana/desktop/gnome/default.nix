@@ -17,6 +17,7 @@ in
       "org/gnome/shell" = {
         enabled-extensions = with pkgs.gnomeExtensions; [
           appindicator.extensionUuid
+          caffeine.extensionUuid
           vitals.extensionUuid
         ];
       };

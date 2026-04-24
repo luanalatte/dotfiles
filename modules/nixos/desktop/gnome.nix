@@ -63,6 +63,7 @@
       # gnome-text-editor
       gnome-tweaks
       gnomeExtensions.appindicator
+      gnomeExtensions.caffeine
       gnomeExtensions.vitals
       # nautilus
     ];
