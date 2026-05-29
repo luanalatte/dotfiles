@@ -16,6 +16,7 @@
   latte.packages = with pkgs; [
     bitwarden-desktop
     heroic
+    logseq
     mpv
     obsidian
     (prismlauncher.override {
@@ -30,7 +31,9 @@
     signal-desktop
     spotify
     telegram-desktop
-    vesktop
     yt-dlp
   ];
+
+  programs.discord.enable = true;
+  programs.vesktop.enable = true;
 }
