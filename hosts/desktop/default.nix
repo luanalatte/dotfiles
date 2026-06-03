@@ -15,7 +15,7 @@
   ];
 
   latte = {
-    hardware.gpu = "nvidia"; # TODO: force version 580, as this host's gpu is deprecated in 590 onwards.
+    hardware.gpu = "nvidia";
     hardware.audio = {
       hdmi.enable = false;
       disableAutoMute = true;
@@ -26,6 +26,8 @@
     profiles.graphical.enable = true;
     desktop.gnome.enable = true;
   };
+
+  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
 
   hardware.opentabletdriver.enable = true;
   hardware.opentabletdriver.daemon.enable = false; # I prefer to start it on-demand.
