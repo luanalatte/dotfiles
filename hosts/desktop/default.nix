@@ -134,6 +134,8 @@
   services.flatpak = {
     enable = true;
     packages = [
+      "com.bitwarden.desktop"
+      "com.logseq.Logseq"
       "com.usebottles.bottles"
     ];
   };

@@ -14,9 +14,7 @@
   };
 
   latte.packages = with pkgs; [
-    bitwarden-desktop
     heroic
-    logseq
     mpv
     obsidian
     (prismlauncher.override {
