@@ -28,7 +28,6 @@
     })
     signal-desktop
     spotify
-    telegram-desktop
     yt-dlp
   ];
 

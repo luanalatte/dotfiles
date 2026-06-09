@@ -135,8 +135,10 @@
     enable = true;
     packages = [
       "com.bitwarden.desktop"
+      "com.brave.Browser"
       "com.logseq.Logseq"
       "com.usebottles.bottles"
+      "org.telegram.desktop"
     ];
   };
 
