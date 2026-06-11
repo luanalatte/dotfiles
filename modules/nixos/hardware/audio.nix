@@ -25,7 +25,16 @@ in
 
       serviceConfig = {
         Type = "oneshot";
-        ExecStart = "${pkgs.alsa-utils}/bin/amixer -c 0 sset 'Auto-Mute Mode' Disabled";
+        ExecStart = pkgs.writeShellScript "disable-auto-mute" ''
+          while read -r card _; do
+            # Only process lines that begin with a card number.
+            [[ "$card" =~ ^[0-9]+$ ]] || continue
+
+            if ${pkgs.alsa-utils}/bin/amixer -c "$card" controls | grep -Fq "Auto-Mute Mode"; then
+              ${pkgs.alsa-utils}/bin/amixer -c "$card" sset 'Auto-Mute Mode' Disabled
+            fi
+          done < /proc/asound/cards
+        '';
       };
     };
 
