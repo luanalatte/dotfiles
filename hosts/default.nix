@@ -15,7 +15,7 @@
       ];
     };
 
-    hosts.desktop = {
+    hosts.nixos = {
       arch = "x86_64";
       class = "nixos";
       modules = [ ];
