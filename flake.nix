@@ -22,5 +22,21 @@
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [ "x86_64-linux" ];
       imports = [ ./hosts ];
+
+      perSystem =
+        { pkgs, ... }:
+        {
+          packages.diff-system = pkgs.writeShellApplication {
+            name = "diff-system";
+            text = ''
+              new=$(
+                nix build --no-link --print-out-paths ".#nixosConfigurations.$(hostname).config.system.build.toplevel"
+              )
+
+              nix store diff-closures /run/current-system "$new"
+              sudo "$new"/bin/switch-to-configuration dry-activate
+            '';
+          };
+        };
     };
 }
