@@ -29,9 +29,9 @@
     })
     signal-desktop
     spotify
+    tuxedo
     yt-dlp
   ];
 
   programs.discord.enable = true;
-  programs.vesktop.enable = true;
 }

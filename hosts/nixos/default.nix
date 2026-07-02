@@ -93,7 +93,6 @@
     easyeffects
     alacritty
     alsa-utils
-    azahar
     htop
     libreoffice-still
     nixd
@@ -139,6 +138,7 @@
   services.flatpak = {
     enable = true;
     packages = [
+      "org.azahar_emu.Azahar"
       "com.bitwarden.desktop"
       "com.brave.Browser"
       "com.logseq.Logseq"
