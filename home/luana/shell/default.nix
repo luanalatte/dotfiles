@@ -45,4 +45,9 @@
       auto_update_interval_hours = 24 * 15; # every 15 days
     };
   };
+
+  programs.alacritty = {
+    enable = true;
+    theme = "catppuccin_mocha";
+  };
 }
