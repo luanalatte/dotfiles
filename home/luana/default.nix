@@ -4,6 +4,7 @@
   imports = [
     ./desktop
     ./dev
+    ./lazyvim.nix
     ./shell
     ./themes
   ];
@@ -16,7 +17,6 @@
   latte.packages = with pkgs; [
     heroic
     mpv
-    nixfmt
     obsidian
     (prismlauncher.override {
       textToSpeechSupport = false;

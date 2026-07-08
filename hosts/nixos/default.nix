@@ -95,7 +95,6 @@
     alsa-utils
     htop
     libreoffice-still
-    nixd
     podman-compose
     podman-desktop
     tree

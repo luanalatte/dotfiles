@@ -17,6 +17,9 @@
     flake-parts.inputs.nixpkgs-lib.follows = "nixpkgs";
 
     easy-hosts.url = "github:tgirlcloud/easy-hosts";
+
+    lazyvim.url = "github:pfassina/lazyvim-nix";
+    lazyvim.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
