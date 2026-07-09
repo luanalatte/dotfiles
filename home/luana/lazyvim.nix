@@ -16,6 +16,8 @@ in
     };
 
     extraPackages = with pkgs; [
+      emmet-language-server
+
       # nix
       nixd
       nixfmt
@@ -23,8 +25,7 @@ in
 
       # PHP
       intelephense
-      php.packages.php-codesniffer
-      php.packages.php-cs-fixer
+      blade-formatter
     ];
 
     treesitterParsers = with pkgs.vimPlugins.nvim-treesitter-parsers; [
@@ -47,6 +48,48 @@ in
     };
 
     plugins = {
+      php = lazyConfig [
+        {
+          plugin = "neovim/nvim-lspconfig";
+          opts.servers.phpactor.enabled = false;
+          opts.servers.intelephense.enabled = true;
+        }
+        {
+          plugin = "mfussenegger/nvim-lint";
+          event = "LazyFile";
+          opts.linters_by_ft.php = [ ]; # Explicitly set to empty to disable phpcs from LazyVim PHP extra.
+        }
+        {
+          plugin = "stevearc/conform.nvim";
+          opts.formatters_by_ft.php = [ "pint" ];
+          opts.formatters_by_ft.blade = [ "blade-formatter" ];
+        }
+      ];
+      emmet = lazyConfig {
+        plugin = "neovim/nvim-lspconfig";
+        opts.servers.emmet_ls.enabled = false;
+        opts.servers.emmet_language_server = {
+          enabled = true;
+          filetypes = [
+            "astro"
+            "blade"
+            "css"
+            "eruby"
+            "html"
+            "htmlangular"
+            "htmldjango"
+            "javascriptreact"
+            "less"
+            "pug"
+            "sass"
+            "scss"
+            "svelte"
+            "templ"
+            "typescriptreact"
+            "vue"
+          ];
+        };
+      };
       nix = lazyConfig {
         plugin = "neovim/nvim-lspconfig";
         opts.servers = {
