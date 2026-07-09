@@ -88,6 +88,10 @@ in
         command = "alacritty";
         binding = "<Super>Return";
       };
+
+      "desktop/ibus/panel/emoji" = {
+        hotkey = [ ];
+      };
     };
   };
 }
