@@ -17,6 +17,7 @@ in
 
     extraPackages = with pkgs; [
       emmet-language-server
+      vscode-css-languageserver
 
       # nix
       nixd
@@ -48,6 +49,10 @@ in
     };
 
     plugins = {
+      css = lazyConfig {
+        plugin = "neovim/nvim-lspconfig";
+        opts.servers.cssls.enabled = true;
+      };
       php = lazyConfig [
         {
           plugin = "neovim/nvim-lspconfig";
