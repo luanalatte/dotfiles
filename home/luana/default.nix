@@ -4,7 +4,7 @@
   imports = [
     ./desktop
     ./dev
-    ./lazyvim.nix
+    ./lazyvim
     ./shell
     ./themes
   ];
