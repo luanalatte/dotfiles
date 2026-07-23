@@ -78,6 +78,7 @@ in
       };
 
       "org/gnome/settings-daemon/plugins/media-keys" = {
+        screensaver = [ ];
         custom-keybindings = [
           "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
         ];
