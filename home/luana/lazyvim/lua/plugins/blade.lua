@@ -8,6 +8,12 @@ return {
 		},
 	},
 	{
+		"nvim-treesitter/nvim-treesitter",
+		opts = {
+			ensure_installed = { "blade" },
+		},
+	},
+	{
 		"folke/ts-comments.nvim",
 		opts = {
 			lang = {

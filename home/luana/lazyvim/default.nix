@@ -9,8 +9,11 @@
     configFiles = ./lua;
 
     extras = {
-      lang.nix.enable = true;
-      lang.php.enable = true;
+      lang = {
+        nix.enable = true;
+        php.enable = true;
+        python.enable = true;
+      };
     };
 
     extraPackages = with pkgs; [
@@ -30,6 +33,10 @@
       # PHP
       intelephense
       blade-formatter
+
+      # Python
+      basedpyright
+      ruff
     ];
 
     treesitterParsers = with pkgs.vimPlugins.nvim-treesitter-parsers; [
