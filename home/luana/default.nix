@@ -18,6 +18,7 @@
     heroic
     mpv
     obsidian
+    opencode
     (prismlauncher.override {
       textToSpeechSupport = false;
       jdks = [
