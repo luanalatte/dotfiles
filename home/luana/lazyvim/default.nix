@@ -17,6 +17,8 @@
     };
 
     extraPackages = with pkgs; [
+      keep-sorted
+
       # Lua
       lua-language-server
       stylua

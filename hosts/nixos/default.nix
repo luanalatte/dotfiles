@@ -89,14 +89,16 @@
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
   latte.packages = with pkgs; [
-    easyeffects
+    # keep-sorted start
     alacritty
     alsa-utils
+    easyeffects
     htop
     libreoffice-still
     podman-compose
     podman-desktop
     tree
+    # keep-sorted end
   ];
 
   fonts.packages = with pkgs; [
@@ -136,12 +138,14 @@
   services.flatpak = {
     enable = true;
     packages = [
-      "org.azahar_emu.Azahar"
+      # keep-sorted start
       "com.bitwarden.desktop"
       "com.brave.Browser"
       "com.logseq.Logseq"
       "com.usebottles.bottles"
+      "org.azahar_emu.Azahar"
       "org.telegram.desktop"
+      # keep-sorted end
     ];
   };
 

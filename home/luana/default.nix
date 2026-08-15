@@ -15,10 +15,7 @@
   };
 
   latte.packages = with pkgs; [
-    heroic
-    mpv
-    obsidian
-    opencode
+    # keep-sorted start block=yes
     (prismlauncher.override {
       textToSpeechSupport = false;
       jdks = [
@@ -28,10 +25,15 @@
         jdk8
       ];
     })
+    heroic
+    mpv
+    obsidian
+    opencode
     signal-desktop
     spotify
     tuxedo
     yt-dlp
+    # keep-sorted end
   ];
 
   programs.discord.enable = true;
