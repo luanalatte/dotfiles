@@ -1,5 +1,3 @@
-{ pkgs, ... }:
-
 {
   home.shellAliases = {
     ":q" = "exit";

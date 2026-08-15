@@ -7,11 +7,9 @@
 
 let
   cfg = config.latte.hardware;
-
-  inherit (config.latte.hardware) gpu;
 in
 {
-  config = lib.mkIf (gpu == "nvidia") {
+  config = lib.mkIf (cfg.gpu == "nvidia") {
     services.xserver.videoDrivers = [ "nvidia" ];
 
     boot = {
