@@ -79,23 +79,9 @@
 
   programs.neovim.enable = true;
 
-  programs.direnv = {
-    enable = true;
-    settings = {
-      global = {
-        warn_timeout = 0;
-      };
-    };
-  };
-
-  # List packages installed in system profile.
-  # You can use https://search.nixos.org/ to find more packages (and options).
   latte.packages = {
     inherit (pkgs)
-      # keep-sorted start
       easyeffects
-      libreoffice-still
-      # keep-sorted end
       ;
   };
 
