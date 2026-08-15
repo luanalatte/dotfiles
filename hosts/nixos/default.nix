@@ -11,26 +11,31 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ./users.nix
   ];
 
   latte = {
-    hardware.gpu = "nvidia";
-    hardware.audio = {
-      hdmi.enable = false;
-      disableAutoMute = true;
+    hardware = {
+      gpu = "nvidia";
+      audio.disableAutoMute = true;
+      printers.epsonL3150.enable = true;
+      nvidia.hdmiAudio = false;
     };
 
-    hardware.printers.epsonL3150.enable = true;
+    profiles = {
+      graphical.enable = true;
+      workstation.enable = true;
+      gaming.enable = true;
+    };
 
-    profiles.graphical.enable = true;
     desktop.gnome.enable = true;
   };
 
   hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
 
   hardware.opentabletdriver.enable = true;
-  hardware.opentabletdriver.daemon.enable = false; # I prefer to start it on-demand.
 
+  # This machine has issues with power management due to nvidia.
   services.power-profiles-daemon.enable = false;
 
   # This machine has issues with suspend due to nvidia.
@@ -69,9 +74,6 @@
     variant = "altgr-intl";
   };
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.libinput.enable = true;
-
   programs.zsh.enable = true;
   programs.starship.enable = true;
 
@@ -88,22 +90,14 @@
 
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
-  latte.packages = with pkgs; [
-    # keep-sorted start
-    alacritty
-    alsa-utils
-    easyeffects
-    htop
-    libreoffice-still
-    podman-compose
-    podman-desktop
-    tree
-    # keep-sorted end
-  ];
-
-  fonts.packages = with pkgs; [
-    nerd-fonts.adwaita-mono
-  ];
+  latte.packages = {
+    inherit (pkgs)
+      # keep-sorted start
+      easyeffects
+      libreoffice-still
+      # keep-sorted end
+      ;
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -115,17 +109,7 @@
 
   programs.droidcam.enable = true;
 
-  programs.git.enable = true;
-  programs.git.config = {
-    init.defaultBranch = "main";
-  };
-
   programs.steam.enable = true;
-
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
@@ -159,11 +143,7 @@
     # };
   };
 
-  virtualisation.podman = {
-    enable = true;
-    dockerCompat = true;
-    dockerSocket.enable = true;
-  };
+  virtualisation.podman.enable = true;
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you

@@ -9,6 +9,12 @@ let
   cfg = config.latte.hardware;
 in
 {
+  options.latte.hardware.nvidia = {
+    hdmiAudio = lib.mkEnableOption "NVIDIA HDMI audio" // {
+      default = true;
+    };
+  };
+
   config = lib.mkIf (cfg.gpu == "nvidia") {
     services.xserver.videoDrivers = [ "nvidia" ];
 
@@ -52,5 +58,9 @@ in
         nvidiaSettings = false;
       };
     };
+
+    services.udev.extraRules = lib.mkIf (cfg.nvidia.hdmiAudio == false) ''
+      ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x040300", ATTR{remove}="1"
+    ''; # NVIDIA HDMI audio device
   };
 }

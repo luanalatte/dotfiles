@@ -1,3 +1,5 @@
+{ pkgs, ... }:
+
 {
   environment.shellAliases = {
     grep = "grep --color=auto";
@@ -6,5 +8,12 @@
     ll = "ls -lh";
     la = "ls -lah";
     lla = "ls -lah";
+  };
+
+  latte.packages = {
+    inherit (pkgs)
+      htop
+      tree
+      ;
   };
 }

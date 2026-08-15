@@ -14,6 +14,51 @@ in
     programs.gnome-shell.enable = true;
 
     dconf.settings = {
+      # keep-sorted start block=yes newline_separated=yes
+      "desktop/ibus/panel/emoji" = {
+        hotkey = [ ];
+      };
+
+      "org/gnome/desktop/interface" = {
+        enable-hot-corners = false;
+        cursor-theme = config.home.pointerCursor.name;
+      };
+
+      "org/gnome/desktop/peripherals/keyboard" = {
+        delay = uint32 200;
+        repeat = uint32 20;
+      };
+
+      "org/gnome/desktop/peripherals/mouse" = {
+        speed = 0.5;
+        accel-profile = "flat";
+      };
+
+      "org/gnome/desktop/sound" = {
+        event-sounds = false;
+      };
+
+      "org/gnome/desktop/wm/keybindings" = {
+        close = [ "<Super>w" ];
+        switch-to-workspace-left = [ "<Super>comma" ];
+        switch-to-workspace-right = [ "<Super>period" ];
+        move-to-workspace-left = [ "<Shift><Super>comma" ];
+        move-to-workspace-right = [ "<Shift><Super>period" ];
+      };
+
+      "org/gnome/settings-daemon/plugins/media-keys" = {
+        screensaver = [ ];
+        custom-keybindings = [
+          "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
+        ];
+      };
+
+      "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
+        name = "Launch Terminal";
+        command = "alacritty";
+        binding = "<Super>Return";
+      };
+
       "org/gnome/shell" = {
         enabled-extensions = with pkgs.gnomeExtensions; [
           appindicator.extensionUuid
@@ -45,54 +90,9 @@ in
         favorite-apps = [
           "org.gnome.Nautilus.desktop"
           "zen.desktop"
-          "obsidian.desktop"
-          "code.desktop"
         ];
       };
-
-      "org/gnome/desktop/sound" = {
-        event-sounds = false;
-      };
-
-      "org/gnome/desktop/interface" = {
-        enable-hot-corners = false;
-        cursor-theme = config.home.pointerCursor.name;
-      };
-
-      "org/gnome/desktop/peripherals/keyboard" = {
-        delay = uint32 200;
-        repeat = uint32 20;
-      };
-
-      "org/gnome/desktop/peripherals/mouse" = {
-        speed = 0.5;
-        accel-profile = "flat";
-      };
-
-      "org/gnome/desktop/wm/keybindings" = {
-        close = [ "<Super>w" ];
-        switch-to-workspace-left = [ "<Super>comma" ];
-        switch-to-workspace-right = [ "<Super>period" ];
-        move-to-workspace-left = [ "<Shift><Super>comma" ];
-        move-to-workspace-right = [ "<Shift><Super>period" ];
-      };
-
-      "org/gnome/settings-daemon/plugins/media-keys" = {
-        screensaver = [ ];
-        custom-keybindings = [
-          "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
-        ];
-      };
-
-      "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
-        name = "Launch Terminal";
-        command = "alacritty";
-        binding = "<Super>Return";
-      };
-
-      "desktop/ibus/panel/emoji" = {
-        hotkey = [ ];
-      };
+      # keep-sorted end
     };
   };
 }

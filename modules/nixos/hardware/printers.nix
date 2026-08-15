@@ -16,7 +16,7 @@ in
   };
 
   config = {
-    latte.packages = lib.mkIf cfg.epsonL3150.enable [ pkgs.epson-escpr ];
+    latte.packages = lib.mkIf cfg.epsonL3150.enable { inherit (pkgs) epson-escpr; };
 
     services.printing.enable = lib.mkIf cfg.epsonL3150.enable true;
   };

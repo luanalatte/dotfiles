@@ -54,19 +54,24 @@
       yelp
     ];
 
-    latte.packages = with pkgs; [
-      # baobab
-      evince # Waiting for papers to get evince's full-featured print dialog
-      # gnome-calculator
-      # gnome-calendar
-      # gnome-system-monitor
-      # gnome-text-editor
-      gnome-tweaks
-      gnomeExtensions.appindicator
-      gnomeExtensions.caffeine
-      gnomeExtensions.vitals
-      # nautilus
-    ];
+    latte.packages = {
+      inherit (pkgs)
+        # baobab
+        evince # Waiting for papers to get evince's full-featured print dialog
+        # gnome-calculator
+        # gnome-calendar
+        # gnome-system-monitor
+        # gnome-text-editor
+        gnome-tweaks
+        # nautilus
+        ;
+
+      inherit (pkgs.gnomeExtensions)
+        appindicator
+        caffeine
+        vitals
+        ;
+    };
 
     qt = {
       enable = true;

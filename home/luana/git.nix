@@ -1,10 +1,15 @@
+{ config, ... }:
+
 {
   programs.git = {
-    enable = true;
+    inherit (config.latte.profiles.workstation) enable;
+
+    signing = {
+      format = "ssh";
+      signByDefault = false;
+    };
+
     settings = {
-      init.defaultBranch = "main";
-      # commit.gpgsign = true;
-      # gpg.format = "ssh";
       alias = {
         s = "status";
         b = "branch";
@@ -12,6 +17,8 @@
         cane = "commit --amend --no-edit";
         undo = "reset --soft HEAD~1";
       };
+
+      init.defaultBranch = "main";
     };
   };
 }

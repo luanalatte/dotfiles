@@ -10,7 +10,7 @@ let
   cfg = config.latte.programs;
 
   enabledBrowsers = lib.filterAttrs (_: b: b.enable) cfg.browsers;
-  enabledPackages = lib.mapAttrsToList (_: b: b.package) enabledBrowsers;
+  enabledPackages = lib.mapAttrs (_: b: b.package) enabledBrowsers;
 
   defaultBrowser = if cfg.defaultBrowser != null then enabledBrowsers.${cfg.defaultBrowser} else null;
 

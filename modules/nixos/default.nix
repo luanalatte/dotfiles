@@ -4,18 +4,18 @@
   _class = "nixos";
 
   imports = [
-    ../../home
+    # keep-sorted start prefix_order=../,../../,./
     ../generic
+    ../../home
     ./boot
     ./desktop
+    ./environment
     ./hardware
-    ./locale.nix
-    ./nix.nix
     ./programs
-    ./revision.nix
     ./system
     ./users
-    inputs.nix-flatpak.nixosModules.nix-flatpak
     inputs.home-manager.nixosModules.default
+    inputs.nix-flatpak.nixosModules.nix-flatpak
+    # keep-sorted end
   ];
 }

@@ -7,4 +7,6 @@
     name = "Breeze_Light";
     size = 24;
   };
+
+  programs.alacritty.theme = "catppuccin_mocha";
 }
