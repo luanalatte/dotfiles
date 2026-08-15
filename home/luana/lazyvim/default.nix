@@ -19,10 +19,6 @@
     extraPackages = with pkgs; [
       keep-sorted
 
-      # Lua
-      lua-language-server
-      stylua
-
       # HTML / CSS
       emmet-language-server
       vscode-css-languageserver

@@ -42,6 +42,13 @@
               sudo "$new"/bin/switch-to-configuration dry-activate
             '';
           };
+
+          devShells.default = pkgs.mkShellNoCC {
+            packages = with pkgs; [
+              lua-language-server
+              stylua
+            ];
+          };
         };
     };
 }
