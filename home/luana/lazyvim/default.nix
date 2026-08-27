@@ -5,11 +5,13 @@
   programs.neovim.vimAlias = true;
 
   programs.lazyvim = {
-    enable = config.latte.profiles.workstation.enable;
+    enable = true; # TODO: restore line below.
+    #enable = config.latte.profiles.workstation.enable;
     configFiles = ./lua;
 
     extras = {
       lang = {
+        dotnet.enable = true;
         nix.enable = true;
         php.enable = true;
         python.enable = true;
@@ -22,6 +24,10 @@
       # HTML / CSS
       emmet-language-server
       vscode-css-languageserver
+
+      # dotnet
+      csharpier
+      omnisharp-roslyn
 
       # nix
       nixd
