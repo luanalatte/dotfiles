@@ -20,7 +20,7 @@ in
     (optionalAttrs profiles.workstation.enable {
       inherit (pkgs)
         # keep-sorted start
-        libreoffice-still
+        libreoffice-stable
         opencode
         tuxedo
         # keep-sorted end
