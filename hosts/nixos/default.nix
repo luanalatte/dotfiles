@@ -112,7 +112,9 @@
       "app.zen_browser.zen"
       "com.bitwarden.desktop"
       "com.brave.Browser"
+      "com.github.tchx84.Flatseal"
       "com.usebottles.bottles"
+      "io.github.flattool.Warehouse"
       "org.telegram.desktop"
       # keep-sorted end
     ];
