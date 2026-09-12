@@ -109,6 +109,7 @@
     enable = true;
     packages = [
       # keep-sorted start
+      "app.zen_browser.zen"
       "com.bitwarden.desktop"
       "com.brave.Browser"
       "com.usebottles.bottles"

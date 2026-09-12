@@ -10,7 +10,9 @@ let
   cfg = config.latte.programs;
 
   enabledBrowsers = lib.filterAttrs (_: b: b.enable) cfg.browsers;
-  enabledPackages = lib.mapAttrs (_: b: b.package) enabledBrowsers;
+  enabledPackages = lib.mapAttrs (_: b: b.package) (
+    lib.filterAttrs (_: b: b.package or null != null) enabledBrowsers
+  );
 
   defaultBrowser = if cfg.defaultBrowser != null then enabledBrowsers.${cfg.defaultBrowser} else null;
 
@@ -33,7 +35,7 @@ in
         };
       };
 
-      zen-browser = {
+      zen = {
         enable = lib.mkEnableOption "Zen Browser";
         package = lib.mkOption {
           type = package;
@@ -42,6 +44,14 @@ in
         desktopFileName = lib.mkOption {
           type = str;
           default = "zen.desktop";
+        };
+      };
+
+      zen-flatpak = {
+        enable = lib.mkEnableOption "Zen Browser (Flatpak)";
+        desktopFileName = lib.mkOption {
+          type = str;
+          default = "app.zen_browser.zen.desktop";
         };
       };
     };

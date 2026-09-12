@@ -12,8 +12,8 @@ let
 in
 {
   latte.programs = {
-    browsers.zen-browser.enable = true;
-    defaultBrowser = "zen-browser";
+    browsers.zen-flatpak.enable = true;
+    defaultBrowser = "zen-flatpak";
   };
 
   latte.packages = mergeAttrsList [

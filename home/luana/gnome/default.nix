@@ -89,7 +89,7 @@ in
       "org/gnome/shell/favorite-apps" = {
         favorite-apps = [
           "org.gnome.Nautilus.desktop"
-          "zen.desktop"
+          "app.zen_browser.zen.desktop"
           "obsidian.desktop"
         ];
       };
