@@ -90,9 +90,17 @@ in
         favorite-apps = [
           "org.gnome.Nautilus.desktop"
           "zen.desktop"
+          "obsidian.desktop"
         ];
       };
       # keep-sorted end
+    };
+
+    xdg.mimeApps = {
+      enable = true;
+      defaultApplications = {
+        "application/pdf" = "org.gnome.Evince.desktop";
+      };
     };
   };
 }
