@@ -111,9 +111,7 @@
       # keep-sorted start
       "com.bitwarden.desktop"
       "com.brave.Browser"
-      "com.logseq.Logseq"
       "com.usebottles.bottles"
-      "org.azahar_emu.Azahar"
       "org.telegram.desktop"
       # keep-sorted end
     ];
