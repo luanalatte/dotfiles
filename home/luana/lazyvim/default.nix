@@ -15,6 +15,7 @@
         nix.enable = true;
         php.enable = true;
         python.enable = true;
+        tex.enable = true;
       };
     };
 
@@ -41,6 +42,9 @@
       # Python
       basedpyright
       ruff
+
+      # LaTeX
+      texlab
     ];
 
     treesitterParsers = with pkgs.vimPlugins.nvim-treesitter-parsers; [
