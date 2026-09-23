@@ -66,18 +66,14 @@
               packages = with pkgs; [
                 lua-language-server
                 stylua
-                writeShellApplication
-                {
-                  name = "diff-system";
-                  text = ''
-                    new=$(
-                      nix build --no-link --print-out-paths ".#nixosConfigurations.$(hostname).config.system.build.toplevel"
-                    )
+                (writeShellScriptBin "diff-system" ''
+                  new=$(
+                    nix build --no-link --print-out-paths ".#nixosConfigurations.$(hostname).config.system.build.toplevel"
+                  )
 
-                    nix store diff-closures /run/current-system "$new"
-                    sudo "$new"/bin/switch-to-configuration dry-activate
-                  '';
-                }
+                  nix store diff-closures /run/current-system "$new"
+                  sudo "$new"/bin/switch-to-configuration dry-activate
+                '')
               ];
             };
           };
