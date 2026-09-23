@@ -2,7 +2,6 @@
   lib,
   pkgs,
   config,
-  osConfig,
   ...
 }:
 
@@ -10,7 +9,7 @@ let
   uint32 = lib.hm.gvariant.mkUint32;
 in
 {
-  config = lib.mkIf osConfig.latte.desktop.gnome.enable {
+  config = lib.mkIf config.latte.desktop.gnome.enable {
     programs.gnome-shell.enable = true;
 
     dconf.settings = {

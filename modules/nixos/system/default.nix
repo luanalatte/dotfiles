@@ -1,3 +1,5 @@
+{ config, ... }:
+
 {
   imports = [
     # keep-sorted start
@@ -7,4 +9,6 @@
     ./shell_.nix
     # keep-sorted end
   ];
+
+  system.stateVersion = config.latte.system.stateVersion;
 }

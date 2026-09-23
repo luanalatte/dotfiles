@@ -20,7 +20,13 @@ in
         imports = [ ./${name} ];
       });
 
-      sharedModules = [ (self + /modules/home/default.nix) ];
+      sharedModules = [
+        (self + /modules/home/default.nix)
+        {
+          latte.desktop = config.latte.desktop;
+          latte.profiles = config.latte.profiles;
+        }
+      ];
     };
   };
 }

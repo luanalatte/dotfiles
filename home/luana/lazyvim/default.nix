@@ -1,12 +1,17 @@
-{ pkgs, config, ... }:
+{
+  lib,
+  inputs,
+  pkgs,
+  config,
+  ...
+}:
 
 {
   # Ensure 'vim' points to this neovim and not the system-wide one.
   programs.neovim.vimAlias = true;
 
   programs.lazyvim = {
-    enable = true; # TODO: restore line below.
-    #enable = config.latte.profiles.workstation.enable;
+    enable = lib.mkDefault config.latte.profiles.workstation.enable;
     configFiles = ./lua;
 
     extras = {
@@ -49,6 +54,19 @@
 
     treesitterParsers = with pkgs.vimPlugins.nvim-treesitter-parsers; [
       blade
+    ];
+
+    plugins.colorscheme = inputs.lazyvim.lib.lazyConfig [
+      {
+        plugin = "folke/tokyonight.nvim";
+        enabled = false;
+      }
+      {
+        plugin = "LazyVim";
+        opts = {
+          colorscheme = "catppuccin-mocha";
+        };
+      }
     ];
   };
 }

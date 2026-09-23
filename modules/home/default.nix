@@ -1,4 +1,8 @@
-{ osConfig, inputs, ... }:
+{
+  config,
+  inputs,
+  ...
+}:
 
 {
   _class = "homeManager";
@@ -6,12 +10,13 @@
   imports = [
     # keep-sorted start
     ../generic
+    ./desktop
     ./programs
     inputs.lazyvim.homeManagerModules.default
     # keep-sorted end
   ];
 
-  home.stateVersion = osConfig.latte.system.stateVersion;
+  programs.home-manager.enable = true;
 
-  latte.profiles = osConfig.latte.profiles;
+  home.stateVersion = config.latte.system.stateVersion;
 }

@@ -24,31 +24,63 @@
 
   outputs =
     inputs:
-    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
-      systems = [ "x86_64-linux" ];
-      imports = [ ./hosts ];
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } (
+      { withSystem, ... }:
+      {
+        systems = [ "x86_64-linux" ];
+        imports = [
+          ./hosts
+          inputs.home-manager.flakeModules.default
+        ];
 
-      perSystem =
-        { pkgs, ... }:
-        {
-          packages.diff-system = pkgs.writeShellApplication {
-            name = "diff-system";
-            text = ''
-              new=$(
-                nix build --no-link --print-out-paths ".#nixosConfigurations.$(hostname).config.system.build.toplevel"
-              )
+        flake.homeModules.default = ./modules/home;
+        flake.homeConfigurations.luana = withSystem "x86_64-linux" (
+          { pkgs, ... }:
+          inputs.home-manager.lib.homeManagerConfiguration {
+            inherit pkgs;
 
-              nix store diff-closures /run/current-system "$new"
-              sudo "$new"/bin/switch-to-configuration dry-activate
-            '';
-          };
+            extraSpecialArgs = {
+              inherit inputs;
+              inherit (inputs) self;
+            };
 
-          devShells.default = pkgs.mkShellNoCC {
-            packages = with pkgs; [
-              lua-language-server
-              stylua
+            modules = [
+              ./home/luana/lazyvim
+              inputs.self.homeModules.default
+              {
+                home.username = "luana";
+                home.homeDirectory = "/home/luana";
+                nixpkgs.config.allowUnfree = true;
+
+                programs.lazyvim.enable = true;
+              }
             ];
+          }
+        );
+
+        perSystem =
+          { pkgs, ... }:
+          {
+
+            devShells.default = pkgs.mkShellNoCC {
+              packages = with pkgs; [
+                lua-language-server
+                stylua
+                writeShellApplication
+                {
+                  name = "diff-system";
+                  text = ''
+                    new=$(
+                      nix build --no-link --print-out-paths ".#nixosConfigurations.$(hostname).config.system.build.toplevel"
+                    )
+
+                    nix store diff-closures /run/current-system "$new"
+                    sudo "$new"/bin/switch-to-configuration dry-activate
+                  '';
+                }
+              ];
+            };
           };
-        };
-    };
+      }
+    );
 }
