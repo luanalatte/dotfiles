@@ -93,7 +93,7 @@
   #   enableSSHSupport = true;
   # };
 
-  programs.droidcam.enable = true;
+  programs.droidcam.enable = false;
 
   programs.steam.enable = true;
 
