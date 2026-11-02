@@ -35,6 +35,8 @@
       csharpier
       omnisharp-roslyn
 
+      dotnetCorePackages.sdk_10_0
+
       # nix
       nixd
       nixfmt
