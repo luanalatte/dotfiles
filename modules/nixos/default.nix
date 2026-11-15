@@ -16,6 +16,7 @@
     ./users
     inputs.home-manager.nixosModules.default
     inputs.nix-flatpak.nixosModules.nix-flatpak
+    inputs.vice.nixosModules.default
     # keep-sorted end
   ];
 }

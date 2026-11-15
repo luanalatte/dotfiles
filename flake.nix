@@ -20,6 +20,9 @@
 
     lazyvim.url = "github:pfassina/lazyvim-nix";
     lazyvim.inputs.nixpkgs.follows = "nixpkgs";
+
+    vice.url = "github:splitshotz/Vice";
+    vice.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
