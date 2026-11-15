@@ -7,6 +7,7 @@ in
   home.shellAliases = {
     ":q" = "exit";
     flake = "nix flake";
+    "t" = "tuxedo";
   };
 
   programs = {
