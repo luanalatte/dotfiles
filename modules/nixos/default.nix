@@ -11,6 +11,7 @@
     ./desktop
     ./environment
     ./hardware
+    ./overlays
     ./programs
     ./system
     ./users

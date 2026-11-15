@@ -1,0 +1,46 @@
+From 8dbad4005db8544843fef73aaff5575b1659b2a3 Mon Sep 17 00:00:00 2001
+From: Thomas Booker <tw.booker@outlook.com>
+Date: Thu, 12 Nov 2026 21:55:37 +1300
+Subject: [PATCH] cogl: Fix possible null error return in set_egl_error
+
+If set_egl_error gets EGL_SUCCESS it should still set error so that
+subseqnet functions don't derefence a null pointer.
+
+Closes: #5204
+---
+ cogl/cogl/cogl-renderer-egl.c | 11 ++++++++---
+ 1 file changed, 8 insertions(+), 3 deletions(-)
+
+diff --git a/cogl/cogl/cogl-renderer-egl.c b/cogl/cogl/cogl-renderer-egl.c
+index a997b3d654..deb7491c1d 100644
+--- a/cogl/cogl/cogl-renderer-egl.c
++++ b/cogl/cogl/cogl-renderer-egl.c
+@@ -99,17 +99,22 @@ static void
+ set_egl_error (GError **error)
+ {
+   EGLint error_number;
++  const gchar* error_literal;
+ 
+   if (!error)
+     return;
+ 
+   error_number = eglGetError ();
+-  if (error_number == EGL_SUCCESS)
+-    return;
++
++  if (error_number == EGL_SUCCESS){
++    error_literal = "Expected an EGL error but eglGetError returned EGL_SUCCESS";
++  } else {
++    error_literal = get_egl_error_str (error_number);
++  }
+ 
+   g_set_error_literal (error, COGL_EGL_ERROR,
+                        error_number,
+-                       get_egl_error_str (error_number));
++                       error_literal);
+ }
+ 
+ static gboolean
+-- 
+2.56.0
+
