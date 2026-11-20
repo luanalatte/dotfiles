@@ -51,11 +51,8 @@ in
       };
 
       nvidia = {
-        package = lib.mkDefault config.boot.kernelPackages.nvidiaPackages.production;
         open = false;
-        modesetting.enable = true;
-        powerManagement.enable = config.systemd.targets.suspend.enable;
-        nvidiaSettings = false;
+        nvidiaSettings = lib.mkDefault false;
       };
     };
 

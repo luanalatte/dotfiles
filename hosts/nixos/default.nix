@@ -4,7 +4,6 @@
 
 {
   lib,
-  config,
   pkgs,
   ...
 }:
@@ -32,7 +31,7 @@
     desktop.gnome.enable = true;
   };
 
-  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
+  hardware.nvidia.branch = "legacy_580";
 
   hardware.opentabletdriver.enable = true;
 
@@ -137,7 +136,7 @@
     package = pkgs.mariadb;
   };
 
-  systemd.services.mysql.wantedBy = lib.mkForce []; # start mysql manually
+  systemd.services.mysql.wantedBy = lib.mkForce [ ]; # start mysql manually
 
   virtualisation.podman.enable = true;
 
