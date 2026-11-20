@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   nix = {
@@ -24,13 +24,5 @@
       warn-dirty = false;
       use-xdg-base-directories = true;
     };
-  };
-
-  nixpkgs.config = {
-    allowUnfree = lib.mkDefault true;
-
-    allowUnsupportedSystem = false;
-
-    allowAliases = false;
   };
 }

@@ -2,7 +2,7 @@
   lib,
   config,
   pkgs,
-  inputs,
+  inputs',
   ...
 }:
 
@@ -39,7 +39,7 @@ in
         enable = lib.mkEnableOption "Zen Browser";
         package = lib.mkOption {
           type = package;
-          default = inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default;
+          default = inputs'.zen-browser.packages.default;
         };
         desktopFileName = lib.mkOption {
           type = str;

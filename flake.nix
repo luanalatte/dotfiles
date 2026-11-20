@@ -1,10 +1,7 @@
 {
   inputs = {
-    #nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-26.05";
     nixpkgs.url = "https://channels.nixos.org/nixpkgs-unstable/nixexprs.tar.xz";
-    # nixpkgs-unstable.url = "github:nixos/nixpkgs?ref=nixos-unstable";
 
-    # home-manager.url = "github:nix-community/home-manager/release-26.05";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -12,11 +9,6 @@
 
     zen-browser.url = "github:youwen5/zen-browser-flake";
     zen-browser.inputs.nixpkgs.follows = "nixpkgs";
-
-    flake-parts.url = "github:hercules-ci/flake-parts";
-    flake-parts.inputs.nixpkgs-lib.follows = "nixpkgs";
-
-    easy-hosts.url = "github:tgirlcloud/easy-hosts";
 
     lazyvim.url = "github:pfassina/lazyvim-nix";
     lazyvim.inputs.nixpkgs.follows = "nixpkgs";
@@ -26,60 +18,73 @@
   };
 
   outputs =
-    inputs:
-    inputs.flake-parts.lib.mkFlake { inherit inputs; } (
-      { withSystem, ... }:
-      {
-        systems = [ "x86_64-linux" ];
-        imports = [
-          ./hosts
-          inputs.home-manager.flakeModules.default
-        ];
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      ...
+    }@inputs:
+    let
+      inherit (nixpkgs) lib;
+      inherit (lib.attrsets) mapAttrs;
 
-        flake.homeModules.default = ./modules/home;
-        flake.homeConfigurations.luana = withSystem "x86_64-linux" (
-          { pkgs, ... }:
-          inputs.home-manager.lib.homeManagerConfiguration {
-            inherit pkgs;
-
-            extraSpecialArgs = {
-              inherit inputs;
-              inherit (inputs) self;
-            };
-
-            modules = [
-              ./home/luana/lazyvim
-              inputs.self.homeModules.default
-              {
-                home.username = "luana";
-                home.homeDirectory = "/home/luana";
-                nixpkgs.config.allowUnfree = true;
-
-                programs.lazyvim.enable = true;
-              }
-            ];
-          }
-        );
-
-        perSystem =
-          { pkgs, ... }:
-          {
-
-            devShells.default = pkgs.mkShellNoCC {
-              packages = with pkgs; [
-                lua-language-server
-                stylua
-                (writeShellScriptBin "diff-system" ''
-                  new=$(
-                    nix build --no-link --print-out-paths ".#nixosConfigurations.$(hostname).config.system.build.toplevel"
-                  )
-
-                  nix store diff-closures /run/current-system "$new"
-                  sudo "$new"/bin/switch-to-configuration dry-activate
-                '')
-              ];
-            };
+      # one nixpkgs per system, shared by every host and every output below, so
+      # nothing gets evaluated on a second instance
+      pkgsFor = lib.attrsets.genAttrs lib.systems.flakeExposed (
+        system:
+        import nixpkgs {
+          inherit system;
+          config = {
+            allowUnfree = true;
+            allowUnsupportedSystem = false;
+            allowAliases = false;
           };
-      }
-    );
+          overlays = [
+            (import ./overlays.nix)
+            inputs.vice.overlays.default
+          ];
+        }
+      );
+
+      forAllSystems = fn: mapAttrs (_: fn) pkgsFor;
+    in
+    {
+      lib = import ./lib { inherit lib inputs pkgsFor; };
+
+      nixosConfigurations = mapAttrs self.lib.mkHost {
+        nixos = { };
+      };
+
+      homeModules.default = ./modules/home;
+      homeConfigurations.luana = home-manager.lib.homeManagerConfiguration {
+        pkgs = pkgsFor.x86_64-linux;
+        extraSpecialArgs = { inherit inputs self; };
+        modules = [
+          ./home/luana/lazyvim
+          self.homeModules.default
+          {
+            home.username = "luana";
+            home.homeDirectory = "/home/luana";
+            programs.lazyvim.enable = true;
+          }
+        ];
+      };
+
+      devShells = forAllSystems (pkgs: {
+        default = pkgs.mkShellNoCC {
+          packages = with pkgs; [
+            lua-language-server
+            stylua
+            (writeShellScriptBin "diff-system" ''
+              new=$(
+                nix build --no-link --print-out-paths ".#nixosConfigurations.$(hostname).config.system.build.toplevel"
+              )
+
+              nix store diff-closures /run/current-system "$new"
+              sudo "$new"/bin/switch-to-configuration dry-activate
+            '')
+          ];
+        };
+      });
+    };
 }

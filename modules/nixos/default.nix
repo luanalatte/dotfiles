@@ -11,13 +11,12 @@
     ./desktop
     ./environment
     ./hardware
-    ./overlays
     ./programs
     ./system
     ./users
+    (inputs.vice + "/nix/module.nix") # manually importing bc vice's flake's nixosModule sets nixpkgs.overlays
     inputs.home-manager.nixosModules.default
     inputs.nix-flatpak.nixosModules.nix-flatpak
-    inputs.vice.nixosModules.default
     # keep-sorted end
   ];
 }
