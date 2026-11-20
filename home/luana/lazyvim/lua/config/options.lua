@@ -15,3 +15,6 @@ vim.api.nvim_create_autocmd("FileType", {
     end
   end,
 })
+
+-- temporary fix for a startup error regarding lualine and trouble.nvim
+vim.g.trouble_lualine = false
