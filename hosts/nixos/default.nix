@@ -3,6 +3,7 @@
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
 {
+  lib,
   config,
   pkgs,
   ...
@@ -114,6 +115,7 @@
       "com.brave.Browser"
       "com.github.tchx84.Flatseal"
       "com.usebottles.bottles"
+      "io.dbeaver.DBeaverCommunity"
       "io.github.flattool.Warehouse"
       "org.telegram.desktop"
       # keep-sorted end
@@ -129,6 +131,13 @@
     #   globalAnnounceEnabled = false;
     # };
   };
+
+  services.mysql = {
+    enable = true;
+    package = pkgs.mariadb;
+  };
+
+  systemd.services.mysql.wantedBy = lib.mkForce []; # start mysql manually
 
   virtualisation.podman.enable = true;
 
