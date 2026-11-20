@@ -15,6 +15,7 @@ in
       useGlobalPkgs = true;
       useUserPackages = true;
       extraSpecialArgs = { inherit self inputs; };
+      backupFileExtension = "bak";
 
       users = lib.genAttrs config.latte.system.users (name: {
         imports = [ ./${name} ];
