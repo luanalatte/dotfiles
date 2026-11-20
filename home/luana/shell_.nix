@@ -14,6 +14,7 @@ in
     # keep-sorted start block=yes
     direnv.enable = profiles.workstation.enable;
     hyfetch.enable = true;
+    jq.enable = true;
     starship.enable = profiles.workstation.enable;
     tealdeer = {
       enable = true;
