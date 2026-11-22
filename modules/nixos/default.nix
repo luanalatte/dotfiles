@@ -12,6 +12,7 @@
     ./environment
     ./hardware
     ./programs
+    ./services
     ./system
     ./users
     (inputs.vice + "/nix/module.nix") # manually importing bc vice's flake's nixosModule sets nixpkgs.overlays

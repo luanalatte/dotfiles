@@ -15,6 +15,10 @@
 
     vice.url = "github:splitshotz/Vice";
     vice.inputs.nixpkgs.follows = "nixpkgs";
+
+    # lerd.url = "github:lerd-env/lerd-nixos";
+    lerd.url = "github:luanalatte/lerd-nixos"; # fix
+    lerd.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =

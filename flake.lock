@@ -59,6 +59,26 @@
         "type": "github"
       }
     },
+    "lerd": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1795272990,
+        "narHash": "sha256-jqlEJZS7P2Zy5lacqF7Dl4TTJfbmHXAUOpLMeIJfWbU=",
+        "owner": "luanalatte",
+        "repo": "lerd-nixos",
+        "rev": "08654b16343b175cf48b0cb144ccdf9cda8e9469",
+        "type": "github"
+      },
+      "original": {
+        "owner": "luanalatte",
+        "repo": "lerd-nixos",
+        "type": "github"
+      }
+    },
     "nix-flatpak": {
       "locked": {
         "lastModified": 1790428548,
@@ -92,6 +112,7 @@
       "inputs": {
         "home-manager": "home-manager",
         "lazyvim": "lazyvim",
+        "lerd": "lerd",
         "nix-flatpak": "nix-flatpak",
         "nixpkgs": "nixpkgs",
         "vice": "vice",

@@ -146,4 +146,10 @@
   # system.copySystemConfiguration = true;
 
   services.vice.enable = true;
+
+  services.lerd = {
+    enable = true;
+    user = "luana";
+    useHostPHP = true;
+  };
 }
