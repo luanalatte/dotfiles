@@ -21,7 +21,7 @@ in
         type = enum config.latte.system.users;
       };
 
-      useHostPHP = mkEnableOption "Host PHP";
+      useHostPHP = mkEnableOption "Add PHP and Composer to the host's packages";
     };
 
   config = lib.mkIf cfg.enable (

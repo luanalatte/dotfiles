@@ -4,8 +4,8 @@
     ./audio
     ./gpu
     ./mouse.nix
+    ./opentabletdriver.nix
     ./printers.nix
-    ./tablet.nix
     # keep-sorted end
   ];
 }

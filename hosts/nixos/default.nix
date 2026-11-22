@@ -3,7 +3,6 @@
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
 {
-  lib,
   pkgs,
   ...
 }:
@@ -33,7 +32,10 @@
 
   hardware.nvidia.branch = "legacy_580";
 
-  hardware.opentabletdriver.enable = true;
+  hardware.opentabletdriver = {
+    enable = true;
+    daemon.autoStart = false;
+  };
 
   # This machine has issues with power management due to nvidia.
   services.power-profiles-daemon.enable = false;
@@ -133,10 +135,8 @@
 
   services.mysql = {
     enable = true;
-    package = pkgs.mariadb;
+    autoStart = false;
   };
-
-  systemd.services.mysql.wantedBy = lib.mkForce [ ]; # start mysql manually
 
   virtualisation.podman.enable = true;
 
