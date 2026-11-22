@@ -66,15 +66,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1795272990,
-        "narHash": "sha256-jqlEJZS7P2Zy5lacqF7Dl4TTJfbmHXAUOpLMeIJfWbU=",
-        "owner": "luanalatte",
+        "lastModified": 1795337072,
+        "narHash": "sha256-uN/YZGNvCibUdvhKfjINK1ziOkDCKVd6Po0OjwCCT/s=",
+        "owner": "lerd-env",
         "repo": "lerd-nixos",
-        "rev": "08654b16343b175cf48b0cb144ccdf9cda8e9469",
+        "rev": "d87ee79719c251e9bff417db71fc17a5501836da",
         "type": "github"
       },
       "original": {
-        "owner": "luanalatte",
+        "owner": "lerd-env",
         "repo": "lerd-nixos",
         "type": "github"
       }
