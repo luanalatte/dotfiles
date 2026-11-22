@@ -79,14 +79,31 @@
           packages = with pkgs; [
             lua-language-server
             stylua
-            (writeShellScriptBin "diff-system" ''
-              new=$(
-                nix build --no-link --print-out-paths ".#nixosConfigurations.$(hostname).config.system.build.toplevel"
-              )
+            (writeShellApplication {
+              name = "diff-system";
+              runtimeInputs = [
+                nvd
+                diffutils
+              ];
+              text = ''
+                new=$(
+                  nix build --no-link --print-out-paths \
+                    ".#nixosConfigurations.$(hostname).config.system.build.toplevel"
+                )
 
-              nix store diff-closures /run/current-system "$new"
-              sudo "$new"/bin/switch-to-configuration dry-activate
-            '')
+                echo "=== Package changes ==="
+                nvd diff /run/current-system "$new"
+
+                # echo
+                # echo "=== /etc changes ==="
+                # diff -ru --color=auto /run/current-system/etc "$new/etc" || true
+
+                echo
+                echo "=== Activation (dry run) ==="
+                sudo "$new"/bin/switch-to-configuration dry-activate 2>&1 \
+                  | grep -Ev "^warning: would not apply UID change of user ‘gdm-greeter" || true
+              '';
+            })
           ];
         };
       });
